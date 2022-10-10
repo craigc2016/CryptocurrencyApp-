@@ -2,6 +2,7 @@ package com.example.cryptocurrencyapp.views
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,10 @@ import android.view.ViewGroup
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
 import com.example.cryptocurrencyapp.R
+import com.example.cryptocurrencyapp.common.Resource
 import com.example.cryptocurrencyapp.databinding.FragmentCoinListBinding
 import com.example.cryptocurrencyapp.viewmodels.CoinListViewModel
+import okhttp3.Response
 
 class CoinListFragment : Fragment() {
 
@@ -33,6 +36,22 @@ class CoinListFragment : Fragment() {
         val navController = Navigation.findNavController(view)
         binding.testButton.setOnClickListener {
             navController.navigate(R.id.action_coinListScreen_to_coinDetailsFragment)
+        }
+
+        viewModel.getCoins().observe(viewLifecycleOwner){ response ->
+
+            when(response){
+                is Resource.Success -> {
+
+                }
+                is Resource.Error -> {
+
+                }
+
+                is Resource.Loading -> {
+
+                }
+            }
         }
     }
 
