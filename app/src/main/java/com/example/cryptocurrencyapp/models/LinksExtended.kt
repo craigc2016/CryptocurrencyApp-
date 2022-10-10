@@ -1,4 +1,4 @@
-package com.example.cryptocurrencyapp.models.remote
+package com.example.cryptocurrencyapp.models
 
 data class LinksExtended(
     val stats: Stats,

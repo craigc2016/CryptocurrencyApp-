@@ -1,11 +1,10 @@
 package com.example.cryptocurrencyapp.api
 
-import com.example.cryptocurrencyapp.common.Resource
-import com.example.cryptocurrencyapp.models.remote.CoinDetailDto
-import com.example.cryptocurrencyapp.models.remote.CoinDto
+import com.example.cryptocurrencyapp.models.CoinListDto
+import com.example.cryptocurrencyapp.models.CoinDetailDto
 
 interface CoinInteractor {
-    suspend fun getCoins() : List<CoinDto>
+    suspend fun getCoins() : List<CoinListDto>
     suspend fun getCoin(coinId : String) : CoinDetailDto
 }
 
@@ -13,7 +12,7 @@ class CoinInteractorImpl : CoinInteractor {
 
     private val api = RetrofitUtils.INSTANCE.providesPaprikaApi()
 
-    override suspend fun getCoins(): List<CoinDto> {
+    override suspend fun getCoins(): List<CoinListDto> {
         return api.getCoins()
     }
 

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.cryptocurrencyapp.R
 import com.example.cryptocurrencyapp.common.Resource
 import com.example.cryptocurrencyapp.databinding.FragmentCoinDetailsBinding
 import com.example.cryptocurrencyapp.viewmodels.CoinDetailsViewModel

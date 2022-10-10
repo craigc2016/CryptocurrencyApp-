@@ -1,4 +1,4 @@
-package com.example.cryptocurrencyapp.models.remote
+package com.example.cryptocurrencyapp.models
 
 data class TeamMember(
     val id: String,
