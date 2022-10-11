@@ -8,13 +8,14 @@ data class CoinDetailDto(
     val isActive: Boolean,
     @SerializedName("is_new")
     val isNew: Boolean,
+    val description : String?,
     val name: String,
     val rank: Int,
     val symbol: String,
     val logo: String,
     val type: String,
-    val tags: List<Tag>,
-    val team: List<TeamMember>
+    val tags: List<Tag>?,
+    val team: List<TeamMember>?
 )
 
 

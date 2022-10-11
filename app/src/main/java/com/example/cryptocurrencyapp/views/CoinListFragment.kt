@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
@@ -15,7 +17,10 @@ import com.example.cryptocurrencyapp.adapter.CoinListAdapter
 import com.example.cryptocurrencyapp.common.Resource
 import com.example.cryptocurrencyapp.common.visibility
 import com.example.cryptocurrencyapp.databinding.FragmentCoinListBinding
+import com.example.cryptocurrencyapp.models.CoinListDto
+import com.example.cryptocurrencyapp.models.Tag
 import com.example.cryptocurrencyapp.viewmodels.CoinListViewModel
+import com.plcoding.cryptocurrencyappyt.common.Constants
 
 class CoinListFragment : Fragment() {
 
@@ -36,14 +41,12 @@ class CoinListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CoinListViewModel::class.java]
-
-        coinListInit()
+        val tag: Tag? = arguments?.getParcelable(Constants.PARAM_TAG_ID)
+        coinListInit(tag)
     }
 
-
-    private fun coinListInit() {
-        viewModel.getCoins().observe(viewLifecycleOwner){ response ->
-
+    private fun coinListInit(tag: Tag?) {
+        viewModel.getCoins(tag?.id).observe(viewLifecycleOwner){ response ->
             when(response){
                 is Resource.Success -> {
                     hideProgressBar()
@@ -51,7 +54,7 @@ class CoinListFragment : Fragment() {
                         coinListAdapter = CoinListAdapter(coinList) { coin ->
 
                             val bundle = Bundle().apply {
-                                putParcelable("coin_model",coin)
+                                putParcelable(Constants.PARAM_COIN_ID,coin)
                             }
                             findNavController().navigate(
                                 R.id.action_coinListScreen_to_coinDetailsFragment,
@@ -63,6 +66,7 @@ class CoinListFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     hideProgressBar()
+                    Toast.makeText(context, response.message,Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Loading -> {
@@ -78,6 +82,8 @@ class CoinListFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
     }
+
+
 
     private fun showProgressBar() = binding.coinListProgressBar.visibility(true)
 

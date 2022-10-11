@@ -20,50 +20,50 @@
         android:padding="16dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_name_title"
+            android:id="@+id/option_one_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/coin_name_title"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/coin_code_title"
+            app:layout_constraintEnd_toStartOf="@+id/option_two_title"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_code_title"
+            android:id="@+id/option_two_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
             android:text="@string/coin_code_tile"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/coin_symbol_title"
+            app:layout_constraintEnd_toStartOf="@+id/option_three_title"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/coin_name_title"
+            app:layout_constraintStart_toEndOf="@+id/option_one_title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_symbol_title"
+            android:id="@+id/option_three_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/coin_symbol_title"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="18sp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/coin_code_title"
+            app:layout_constraintStart_toEndOf="@+id/option_two_title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_name"
+            android:id="@+id/option_one_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -72,13 +72,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/coin_code"
+            app:layout_constraintEnd_toStartOf="@+id/option_two_text"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coin_name_title" />
+            app:layout_constraintTop_toBottomOf="@+id/option_one_title" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_code"
+            android:id="@+id/option_two_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -87,13 +87,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/coin_code_title"
+            app:layout_constraintEnd_toEndOf="@+id/option_two_title"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/coin_name"
-            app:layout_constraintTop_toBottomOf="@+id/coin_code_title" />
+            app:layout_constraintStart_toEndOf="@+id/option_one_text"
+            app:layout_constraintTop_toBottomOf="@+id/option_two_title" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/coin_symbol"
+            android:id="@+id/option_three_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -108,8 +108,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/coin_code_title"
-            app:layout_constraintTop_toBottomOf="@+id/coin_code_title" />
+            app:layout_constraintStart_toEndOf="@+id/option_two_title"
+            app:layout_constraintTop_toBottomOf="@+id/option_two_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

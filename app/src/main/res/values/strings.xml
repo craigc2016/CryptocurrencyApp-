@@ -5,4 +5,8 @@
     <string name="coin_symbol_title">Symbol</string>
     <string name="coin_status_active_text">Status Active</string>
     <string name="coin_status_inactive_text">Status Inactive</string>
+    <string name="team_name_title">Name</string>
+    <string name="team_position_title">Position</string>
+    <string name="tag_name_title">Name</string>
+    <string name="tag_counter_title">Coin Counter</string>
 </resources>

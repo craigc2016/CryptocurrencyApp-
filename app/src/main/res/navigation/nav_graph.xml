@@ -21,5 +21,14 @@
         android:id="@+id/coinDetailsFragment"
         android:name="com.example.cryptocurrencyapp.views.CoinDetailsFragment"
         android:label="fragment_coin_details"
-        tools:layout="@layout/fragment_coin_details" />
+        tools:layout="@layout/fragment_coin_details" >
+
+        <argument
+            android:name="tag"
+            app:argType="com.example.cryptocurrencyapp.models.Tag" />
+
+        <action
+            android:id="@+id/action_coinDetailsFragment_to_coinListScreen"
+            app:destination="@id/coinListScreen" />
+    </fragment>
 </navigation>

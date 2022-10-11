@@ -19,15 +19,23 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/coin_title"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Coin Title"
             android:visibility="gone"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="16dp" />
+
+        <ImageView
+            android:id="@+id/coin_logo"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:visibility="gone"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/coin_status"
@@ -36,8 +44,10 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:text="@string/coin_status_active_text"
             android:layout_gravity="end"
             android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:visibility="gone"
             tools:text="Coin Status"/>
 

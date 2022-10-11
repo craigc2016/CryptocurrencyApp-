@@ -4,15 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptocurrencyapp.R
-import com.example.cryptocurrencyapp.common.makePartTextBold
 import com.example.cryptocurrencyapp.common.visibility
-import com.example.cryptocurrencyapp.databinding.CoinListItemBinding
+import com.example.cryptocurrencyapp.databinding.ListItemBinding
 import com.example.cryptocurrencyapp.models.CoinListDto
 
-class CoinListAdapter(private val coinList : List<CoinListDto>, private val onItemClickListener :((CoinListDto) -> Unit)?): RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>() {
+class CoinListAdapter(
+    private val coinList : List<CoinListDto>,
+    private val onItemClickListener :((CoinListDto) -> Unit)?
+): RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
-        val binding = CoinListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CoinViewHolder(binding)
     }
 
@@ -23,15 +25,21 @@ class CoinListAdapter(private val coinList : List<CoinListDto>, private val onIt
 
     override fun getItemCount(): Int = coinList.size
 
-    inner class CoinViewHolder(private val binding : CoinListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CoinViewHolder(private val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(coinItem : CoinListDto) {
-            binding.coinName.text = coinItem.name
-            binding.coinCode.text = coinItem.id
+            //set Titles
+            binding.optionOneTitle.text = itemView.context.getString(R.string.coin_name_title)
+            binding.optionTwoText.text = itemView.context.getString(R.string.coin_code_tile)
+            binding.optionThreeText.text =  itemView.context.getString(R.string.coin_symbol_title)
+
+            //set item text
+            binding.optionOneText.text = coinItem.name
+            binding.optionTwoText.text = coinItem.id
             if (coinItem.isActive) {
-                binding.coinSymbolTitle.visibility(true)
-                binding.coinSymbol.visibility(true)
-                binding.coinSymbol.text = coinItem.symbol
+                binding.optionThreeTitle.visibility(true)
+                binding.optionThreeText.visibility(true)
+                binding.optionThreeText.text = coinItem.symbol
             }
 
             binding.root.setOnClickListener {
