@@ -10,6 +10,9 @@
         android:name="com.example.cryptocurrencyapp.views.CoinListFragment"
         android:label="fragment_coin_list_screen"
         tools:layout="@layout/fragment_coin_list" >
+        <argument
+            android:name="coin_model"
+            app:argType="com.example.cryptocurrencyapp.models.CoinListDto" />
         <action
             android:id="@+id/action_coinListScreen_to_coinDetailsFragment"
             app:destination="@id/coinDetailsFragment" />

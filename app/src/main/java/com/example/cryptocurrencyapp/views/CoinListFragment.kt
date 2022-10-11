@@ -1,15 +1,16 @@
 package com.example.cryptocurrencyapp.views
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.cryptocurrencyapp.R
 import com.example.cryptocurrencyapp.adapter.CoinListAdapter
 import com.example.cryptocurrencyapp.common.Resource
 import com.example.cryptocurrencyapp.common.visibility
@@ -21,12 +22,7 @@ class CoinListFragment : Fragment() {
     private lateinit var viewModel: CoinListViewModel
     private var _binding : FragmentCoinListBinding? = null
     private val binding get() = _binding!!
-    private var page = 1
-    private var isScrolling = false
-    private var isLoading = false
-    private var isLastPage = false
-    private var pages = 0
-    private lateinit var coinListAdapter : CoinListAdapter
+    private var coinListAdapter : CoinListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,18 +36,10 @@ class CoinListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[CoinListViewModel::class.java]
-        val navController = Navigation.findNavController(view)
 
         coinListInit()
-//        recyclerViewInit()
     }
 
-    private fun recyclerViewInit() {
-        binding.coinList.apply {
-            adapter = coinListAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
-    }
 
     private fun coinListInit() {
         viewModel.getCoins().observe(viewLifecycleOwner){ response ->
@@ -60,21 +48,18 @@ class CoinListFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { coinList ->
-                        coinListAdapter = CoinListAdapter(coinList)
-                        binding.coinList.apply {
-                            adapter = coinListAdapter
-                            layoutManager = LinearLayoutManager(activity)
-                        }
+                        coinListAdapter = CoinListAdapter(coinList) { coin ->
 
-//                        val totalResults = viewModel.totalResults()
-//                        coinAdapter?.differ?.submitList(coinList)
-//                        pages = if (totalResults % 20 == 0) {
-//                            totalResults / 20
-//                        }else{
-//                            totalResults / 20 + 1
-//                        }
-//                        isLastPage = page == pages
+                            val bundle = Bundle().apply {
+                                putParcelable("coin_model",coin)
+                            }
+                            findNavController().navigate(
+                                R.id.action_coinListScreen_to_coinDetailsFragment,
+                                bundle
+                            )
+                        }
                     }
+                    recyclerViewInit()
                 }
                 is Resource.Error -> {
                     hideProgressBar()
@@ -87,29 +72,10 @@ class CoinListFragment : Fragment() {
         }
     }
 
-    private val onScrollListener = object : RecyclerView.OnScrollListener() {
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
-                isScrolling = true
-            }
-        }
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-            val layoutManager = binding.coinList.layoutManager as LinearLayoutManager
-            val sizeOfTheCurrentList = layoutManager.itemCount
-            val visibleItems = layoutManager.childCount
-            val topPosition = layoutManager.findFirstVisibleItemPosition()
-
-            val hasReachedToEnd = topPosition + visibleItems >= sizeOfTheCurrentList
-            val shouldPaginate = !isLoading && !isLastPage && hasReachedToEnd && isScrolling
-            if (shouldPaginate){
-                page ++
-                viewModel.getCoins()
-                isScrolling = false
-            }
+    private fun recyclerViewInit() {
+        binding.coinList.apply {
+            adapter = coinListAdapter
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 

@@ -28,6 +28,4 @@ class CoinListViewModel : ViewModel() {
         }
         return coinListLiveData
     }
-
-    fun totalResults() : Int = coinListLiveData.value?.data?.size ?: 0
 }

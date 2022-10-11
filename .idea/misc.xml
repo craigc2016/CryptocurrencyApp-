@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/rounded_text_view.xml" value="0.1225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/coin_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/coin_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_coin_details.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_coin_list.xml" value="0.12310030395136778" />
         <entry key="app/src/main/res/layout/fragment_coin_list_screen.xml" value="0.19610507246376813" />

@@ -1,8 +1,10 @@
 package com.example.cryptocurrencyapp.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class CoinListDto(
     val id : String,
     val name : String,
@@ -13,5 +15,5 @@ data class CoinListDto(
     @SerializedName("is_active")
     val isActive : Boolean,
     val type : String
-)
+) : Parcelable
 

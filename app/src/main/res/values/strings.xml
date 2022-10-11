@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CryptocurrencyApp</string>
+    <string name="coin_name_title">Name</string>
+    <string name="coin_code_tile">Code</string>
+    <string name="coin_symbol_title">Symbol</string>
+    <string name="coin_status_active_text">Status Active</string>
+    <string name="coin_status_inactive_text">Status Inactive</string>
 </resources>
