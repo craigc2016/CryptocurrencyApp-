@@ -12,10 +12,10 @@ import kotlinx.coroutines.launch
 
 class CoinListViewModel : ViewModel() {
 
-    private val coinListLiveData = MutableLiveData<Resource<List<CoinListDto>>>()
     private val coinInteractor = CoinInteractorImpl()
 
     fun getCoins(tag : String? = null) : LiveData<Resource<List<CoinListDto>>> {
+        val coinListLiveData = MutableLiveData<Resource<List<CoinListDto>>>()
         if (coinListLiveData.value?.data.isNullOrEmpty()) coinListLiveData.postValue(Resource.Loading())
 
         viewModelScope.launch(Dispatchers.IO) {

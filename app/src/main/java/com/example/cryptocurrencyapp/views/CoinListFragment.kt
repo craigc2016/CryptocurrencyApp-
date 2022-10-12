@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cryptocurrencyapp.R
 import com.example.cryptocurrencyapp.adapter.CoinListAdapter
+import com.example.cryptocurrencyapp.common.Dialog
 import com.example.cryptocurrencyapp.common.Resource
 import com.example.cryptocurrencyapp.common.visibility
 import com.example.cryptocurrencyapp.databinding.FragmentCoinListBinding
@@ -51,15 +52,27 @@ class CoinListFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { coinList ->
-                        coinListAdapter = CoinListAdapter(coinList) { coin ->
-
-                            val bundle = Bundle().apply {
-                                putParcelable(Constants.PARAM_COIN_ID,coin)
+                        if (coinList.isEmpty()) {
+                            context?.let {
+                                Dialog.show(
+                                    it.getString(R.string.no_results_found_title),
+                                    it.getString(R.string.no_results_found_message),
+                                    it
+                                ) { dialog ->
+                                    dialog.dismiss()
+                                    coinListInit(null)
+                                }
                             }
-                            findNavController().navigate(
-                                R.id.action_coinListScreen_to_coinDetailsFragment,
-                                bundle
-                            )
+                        } else {
+                            coinListAdapter = CoinListAdapter(coinList) { coin ->
+                                val bundle = Bundle().apply {
+                                    putParcelable(Constants.PARAM_COIN_ID,coin)
+                                }
+                                findNavController().navigate(
+                                    R.id.action_coinListScreen_to_coinDetailsFragment,
+                                    bundle
+                                )
+                            }
                         }
                     }
                     recyclerViewInit()
