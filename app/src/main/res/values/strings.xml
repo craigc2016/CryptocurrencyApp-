@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">CryptocurrencyApp</string>
+    <string name="coin_name_title">Name</string>
+    <string name="coin_code_tile">Code</string>
+    <string name="coin_symbol_title">Symbol</string>
+    <string name="coin_status_active_text">Status Active</string>
+    <string name="coin_status_inactive_text">Status Inactive</string>
+    <string name="team_name_title">Name</string>
+    <string name="team_position_title">Position</string>
+    <string name="tag_name_title">Name</string>
+    <string name="tag_counter_title">Coin Counter</string>
+    <string name="no_results_found_title">No results found</string>
+    <string name="no_results_found_message">There was no results found while using tag to search. Select OK to reset search</string>
+    <string name="ok">Ok</string>
 </resources>
